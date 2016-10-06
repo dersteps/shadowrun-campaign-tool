@@ -1,12 +1,6 @@
 package de.zombielabs.campaign.core;
 
-import de.zombielabs.campaign.core.util.Tuple;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 /**
  *
@@ -37,46 +31,50 @@ public class SceneTest {
     
     @Test
     public void testAddNullElement() {
-        final Tuple<SceneElement, SceneElement> nullTuple = null;
+        final SceneElement nullElement = null;
         final int originalCount = this.scene.getElementCount();
-        this.scene.addElement(nullTuple);
-        Assert.assertEquals("After adding null tuple to scene, it should still have the same amount of elements as before", originalCount, this.scene.getElementCount());
-    }
-    
-    @Test
-    public void testAddEmptyElement() {
-        final Tuple<SceneElement, SceneElement> emptyTuple = new Tuple<SceneElement, SceneElement>(null, null);
-        final int originalCount = this.scene.getElementCount();
-        this.scene.addElement(emptyTuple);
-        Assert.assertEquals("After adding an empty tuple to scene, it should still have the same amount of elements as before", originalCount, this.scene.getElementCount());
+        this.scene.addElement(nullElement);
+        Assert.assertEquals("After adding null element to scene, it should still have the same amount of elements as before", originalCount, this.scene.getElementCount());
     }
     
     @Test
     public void testAddValidElements() {
-        
-        final Tuple<SceneElement, SceneElement> validTuple1 = new Tuple<SceneElement, SceneElement>(new SceneElement(), null);
-        final Tuple<SceneElement, SceneElement> validTuple2 = new Tuple<SceneElement, SceneElement>(null, new SceneElement());
-        final Tuple<SceneElement, SceneElement> validTuple3 = new Tuple<SceneElement, SceneElement>(new SceneElement(), new SceneElement());
-        
+        final SceneElement element = new SceneElement();
         final int originalCount = this.scene.getElementCount();
-
-        this.scene.addElement(validTuple1);
-        this.scene.addElement(validTuple2);
-        this.scene.addElement(validTuple3);
+        this.scene.addElement(element);
         
-        Assert.assertEquals("Scene should now have three (3) more tuples than before, but hasn't", originalCount+3, this.scene.getElementCount());
-        
+        Assert.assertEquals("Scene should now have 1 more element than before, but hasn't", originalCount+1, this.scene.getElementCount());
+    }
+    
+    @Test(expected = UnsupportedOperationException.class)
+    public void testImmutability() {
+        final int originalCount = this.scene.getElementCount();
+        this.scene.getElements().add(new SceneElement());
+        Assert.assertEquals("Should not be able to add elements via getting the current list and adding to it (immutable collection)", originalCount, this.scene.getElementCount());
+        Assert.fail("...and by the way, this operation should not be supported at all...");
     }
     
     @Test
-    public void testImmutability() {
+    public void testRemoveNull() {
+        final SceneElement element = new SceneElement();
         final int originalCount = this.scene.getElementCount();
-        try {
-            this.scene.getElements().add(new Tuple<>(new SceneElement(), new SceneElement()));
-            Assert.assertEquals("Should not be able to add elements via getting the current list and adding to it (immutable collection)", originalCount, this.scene.getElementCount());
-            Assert.fail("...and by the way, this operation should not be supported at all...");
-        } catch (UnsupportedOperationException ex) {
-            // Expected exception
-        }
+        this.scene.addElement(element);
+        
+        Assert.assertEquals("Scene should now have 1 more element than before, but hasn't", originalCount+1, this.scene.getElementCount());
+        this.scene.removeElement(null);
+        Assert.assertEquals("Scene should have same amount of elements after removing null element", originalCount+1, this.scene.getElementCount());
+    }
+    
+    @Test
+    public void testRemove() {
+        final SceneElement one = new SceneElement();
+        final SceneElement two = new SceneElement();
+        this.scene.addElement(one);
+        this.scene.addElement(two);
+        final int count = this.scene.getElementCount();
+        this.scene.removeElement(one);
+        Assert.assertEquals("Removing an element should decrease the count", count-1, this.scene.getElementCount());
+        Assert.assertFalse("Removing an element should actually remove it", this.scene.getElements().contains(one));
+        Assert.assertTrue("Not removing an element should not remove it", this.scene.getElements().contains(two));
     }
 }

@@ -1,6 +1,5 @@
 package de.zombielabs.campaign.core;
 
-import de.zombielabs.campaign.core.util.Tuple;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,14 +21,9 @@ public class Scene extends AbstractAttachmentContainer {
     private String name;
     
     /**
-     * Scenes are containers for SceneElement-Tuples.
-     * I chose tuples here because each scene has parts the game master wants to 
-     * tell the players and parts that he/she needs to keep for himself/herself.
-     * So when adding a new tuple to a scene, the first part will be the part to 
-     * tell the players while the second part will be the part the gamemaster keeps 
-     * to himself/herself.
+     * Scenes are containers for SceneElements.
      */
-    private final List<Tuple<SceneElement, SceneElement>> elements = new ArrayList<>();
+    private final List<SceneElement> elements = new ArrayList<>();
     
     /**
      * Initializes a new instance of the Scene class.
@@ -56,11 +50,10 @@ public class Scene extends AbstractAttachmentContainer {
     }
 
     /**
-     * Gets an (unmodifiable) list of all Tuples of SceneElements that build this 
-     * scene.
+     * Gets an (unmodifiable) list of all SceneElements that build this scene.
      * @return An unmodifiable list of all scene elements.
      */
-    public List<Tuple<SceneElement, SceneElement>> getElements() {
+    public List<SceneElement> getElements() {
         return Collections.unmodifiableList(elements);
     }
     
@@ -74,22 +67,19 @@ public class Scene extends AbstractAttachmentContainer {
     
     /**
      * Adds a SceneElement tuple to this Scene.
-     * @param tuple The tuple to add, must not be null. One element of the tuple 
-     * is allowed to be null (e.g. if you want to add an element that is purely 
-     * for the game master, keep the second element null). 
+     * @param element The element to add to the Scene
      */
-    public void addElement(final Tuple<SceneElement, SceneElement> tuple) {
-        if(tuple == null) { 
-            LOG.warn("Ignoring null SceneElement tuple to add to scene '{}'", this.name);
+    public void addElement(final SceneElement element) {
+        if(element == null) { 
+            LOG.warn("Ignoring null SceneElement to add to scene '{}'", this.name);
             return; 
         }
         
-        if(tuple.x == null && tuple.y == null) {
-            LOG.warn("Ignoring empty SceneElement tuple to add to scene '{}'", this.name);
-            return;
-        }
-        
-        this.elements.add(tuple);
+        this.elements.add(element);
+    }
+    
+    public boolean removeElement(final SceneElement element) {
+        return this.elements.remove(element);
     }
     
     
