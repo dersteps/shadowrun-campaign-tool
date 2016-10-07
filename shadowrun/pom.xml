@@ -19,6 +19,7 @@
 <!--        <module>campaign-core</module>-->
         <module>shadowrun-core</module>
         <module>campaign-core</module>
+        <module>campaign-gui</module>
     </modules>
 
     <dependencyManagement>

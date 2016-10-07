@@ -36,8 +36,6 @@ public class ShadowrunCharacter {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-    
-    
 
     public Attribute<Integer> getBody() {
         return body;
