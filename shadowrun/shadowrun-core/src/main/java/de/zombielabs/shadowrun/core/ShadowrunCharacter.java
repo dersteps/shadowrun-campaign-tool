@@ -20,6 +20,8 @@ public class ShadowrunCharacter {
     
     private String name;
     private String nickname;
+    
+    private DamageMonitor damageMonitor;
 
     public String getName() {
         return name;
@@ -131,6 +133,24 @@ public class ShadowrunCharacter {
 
     public void setEssence(Attribute<Double> essence) {
         this.essence = essence;
+    }
+    
+    public ShadowrunCharacter() {
+        this.body = new Attribute<>();
+        this.charisma = new Attribute<>();
+        this.dexterity = new Attribute<>();
+        this.edge = new Attribute<>();
+        this.essence = new Attribute<>();
+        this.intution = new Attribute<>();
+        this.logic = new Attribute<>();
+        this.magic = new Attribute<>();
+        this.reaction = new Attribute<>();
+        this.resonance = new Attribute<>();
+        this.strength = new Attribute<>();
+        this.willpower = new Attribute<>();
+        this.damageMonitor = new DamageMonitor(body, willpower);
+        this.name = "Shadowrun character";
+        this.nickname = "Shadowrun character";
     }
     
     

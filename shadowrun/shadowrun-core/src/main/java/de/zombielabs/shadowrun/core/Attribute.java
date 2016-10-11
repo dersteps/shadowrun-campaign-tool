@@ -5,17 +5,27 @@ package de.zombielabs.shadowrun.core;
  * @author steps
  */
 public class Attribute<T> {
-    private T value;
+    private T naturalValue;
+    private T augmentedValue;
+    
     private String name;
     
-    public T getValue() {
-        return value;
+    public T getNaturalValue() {
+        return naturalValue;
     }
 
-    public void setValue(T value) {
-        this.value = value;
+    public void setNaturalValue(T value) {
+        this.naturalValue = value;
     }
 
+    public T getAugmentedValue() {
+        return augmentedValue;
+    }
+
+    public void setAugmentedValue(T augmentedValue) {
+        this.augmentedValue = augmentedValue;
+    }
+    
     public String getName() {
         return name;
     }
@@ -25,11 +35,12 @@ public class Attribute<T> {
     }
     
     public Attribute() {
-        this(null, "Attribute");
+        this(null, null, "Attribute");
     }
     
-    public Attribute(final T value, final String name) {
-        this.value = value;
+    public Attribute(final T naturalValue, final T augmentedValue, final String name) {
+        this.naturalValue = naturalValue;
         this.name = name;
+        this.augmentedValue = augmentedValue;
     }
 }
