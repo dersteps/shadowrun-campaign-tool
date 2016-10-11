@@ -16,58 +16,88 @@
     </organization>
 
     <modules>
-<!--        <module>campaign-core</module>-->
+        <!--        <module>campaign-core</module>-->
         <module>shadowrun-core</module>
         <module>campaign-core</module>
         <module>campaign-gui</module>
+        <module>shadowrun-xml</module>
     </modules>
 
     <dependencyManagement>
-	  <dependencies>
-		<dependency>
-		  <groupId>junit</groupId>
-		  <artifactId>junit</artifactId>
-		  <version>3.8.1</version>
-		  <scope>test</scope>
-		</dependency>
-                <dependency>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                    <version>1.7.7</version>
-                </dependency>
-	  </dependencies>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>3.8.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jvnet.jaxb2_commons</groupId>
+                <artifactId>jaxb2-basics</artifactId>
+                <version>0.9.1</version>
+            </dependency>
+            <dependency> 
+                <groupId>com.sun.xml.bind</groupId> 
+                <artifactId>jaxb-impl</artifactId> 
+                <version>2.2.4-1</version> 
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2-beta-1</version>
-                <configuration>
-                    <descriptors>
-                        <descriptor>assembly.xml</descriptor>
-                    </descriptors>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>2.0-beta-6</version>
-                <configuration>
-                    <locales>en</locales>
-                </configuration>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.0.2</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.2-beta-1</version>
+                    <configuration>
+                        <descriptors>
+                            <descriptor>assembly.xml</descriptor>
+                        </descriptors>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>2.0-beta-6</version>
+                    <configuration>
+                        <locales>en</locales>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>	
+                    <version>2.7</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.jvnet.jaxb2.maven2</groupId>
+                    <artifactId>maven-jaxb2-plugin</artifactId>
+                    <version>0.12.3</version>                
+                </plugin>
+                <plugin>
+                    <groupId>org.jvnet.jaxb2_commons</groupId>
+                    <artifactId>jaxb2-basics</artifactId>
+                    <version>0.9.1</version>
+                </plugin> 
+            
+            </plugins>
+        </pluginManagement>
     </build>
 
     <reporting>

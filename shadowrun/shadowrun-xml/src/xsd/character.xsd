@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+            xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+            elementFormDefault="qualified" 
+            jaxb:version="2.0">
+
+    <xsd:annotation>
+        <xsd:appinfo>
+            <jaxb:schemaBindings>
+                <jaxb:package name="de.zombielabs.shadowrun.data.character"/>
+            </jaxb:schemaBindings>
+            <xsd:documentation xml:lang="en">
+                Schema definition for a Shadowrun character.
+            </xsd:documentation>
+        </xsd:appinfo>
+    </xsd:annotation>
+    
+    
+    
+    
+    <xsd:complexType name="info">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="nickname" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="gender" type="gender" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="metatype" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="age" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="gender" final="restriction" >
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MALE" />
+            <xsd:enumeration value="FEMALE" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="attributeID" final="restriction" >
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="BOD" />
+            <xsd:enumeration value="DEX" />
+            <xsd:enumeration value="STR" />
+            <xsd:enumeration value="REA" />
+            <xsd:enumeration value="LOG" />
+            <xsd:enumeration value="INT" />
+            <xsd:enumeration value="CHA" />
+            <xsd:enumeration value="WIL" />
+            <xsd:enumeration value="EDG" />
+            <xsd:enumeration value="MAG" />
+            <xsd:enumeration value="RES" />
+            <xsd:enumeration value="ESS" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="datasheet">
+        <xsd:sequence>
+            <xsd:element name="info" type="info" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="attributes" type="attributes" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+        <xsd:attribute name="version" type="xsd:integer" use="required"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="attributes">
+        <xsd:sequence>
+            <xsd:element name="attribute" type="attribute" minOccurs="12" maxOccurs="12"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="attribute">
+        <xsd:attribute name="id" type="attributeID" use="required"/>
+        <xsd:attribute name="natural" type="xsd:decimal" use="required"/>
+        <xsd:attribute name="augmented" type="xsd:decimal" use="required"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="character">
+        <xsd:sequence>
+            <xsd:element name="datasheet" type="datasheet" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="data-version" type="xsd:decimal" use="required"/>
+    </xsd:complexType>
+
+    <xsd:element name="character" type="character"/>
+
+</xsd:schema>
