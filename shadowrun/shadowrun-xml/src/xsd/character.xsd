@@ -20,6 +20,11 @@
     
     
     <xsd:complexType name="info">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <jaxb:class name="CharacterInfo"/>
+            </xsd:appinfo>
+        </xsd:annotation>
         <xsd:sequence>
             <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="nickname" type="xsd:string" minOccurs="1" maxOccurs="1"/>
@@ -74,6 +79,11 @@
     </xsd:complexType>
 
     <xsd:complexType name="character">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <jaxb:class name="SRCharacterXML"/>
+            </xsd:appinfo>
+        </xsd:annotation>
         <xsd:sequence>
             <xsd:element name="datasheet" type="datasheet" minOccurs="1" maxOccurs="unbounded"/>
         </xsd:sequence>
