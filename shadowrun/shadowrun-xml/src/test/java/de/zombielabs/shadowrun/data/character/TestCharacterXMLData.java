@@ -57,6 +57,24 @@ public class TestCharacterXMLData {
         attribs.getAttribute().add(testAttr1);
         
         sheet1.setAttributes(attribs);
+        
+        final Skills skills = new Skills();
+        final Skill skill1 = new Skill();
+        skill1.setName("Example skill");
+        skill1.setLevel(BigInteger.valueOf(3));
+        
+        final SkillSpecialization special1 = new SkillSpecialization();
+        special1.setName("Example specialization");
+        special1.setValue(BigInteger.valueOf(4));
+        skill1.getSpecialization().add(special1);
+        
+        final Skill skill2 = new Skill();
+        skill2.setName("Another example skill");
+        skill2.setLevel(BigInteger.valueOf(5));
+        
+        skills.getSkill().add(skill1);
+        skills.getSkill().add(skill2);
+        sheet1.setSkills(skills);
         c.getDatasheet().add(sheet1);
         
         c.setDataVersion(BigDecimal.valueOf(1.0d));
