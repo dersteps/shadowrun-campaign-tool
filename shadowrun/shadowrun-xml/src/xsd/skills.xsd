@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+            xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+            elementFormDefault="qualified" 
+            jaxb:version="2.0">
+    <xsd:include schemaLocation="basetypes.xsd"/>
+    
+    <xsd:annotation>
+        <xsd:appinfo>
+<!--            <jaxb:schemaBindings>
+                <jaxb:package name="de.zombielabs.shadowrun.data.character"/>
+            </jaxb:schemaBindings>-->
+            <xsd:documentation xml:lang="en">
+                Schema definition for a Shadowrun character; skills
+            </xsd:documentation>
+        </xsd:appinfo>
+    </xsd:annotation>
+    
+    <xsd:complexType name="skills">
+        <xsd:sequence>
+            <xsd:element name="skill" type="skill" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="skillgroups"> 
+        <xsd:sequence>
+            <xsd:element name="skillgroup" type="skillgroup" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="skill-specialization">
+        <xsd:attribute name="value" type="xsd:integer" use="required"/>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="skill">
+        <xsd:sequence>
+            <xsd:element name="specialization" type="skill-specialization" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="level" type="xsd:integer" use="required"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="skillgroup">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="level" type="xsd:integer" use="required"/>
+    </xsd:complexType>
+
+</xsd:schema>

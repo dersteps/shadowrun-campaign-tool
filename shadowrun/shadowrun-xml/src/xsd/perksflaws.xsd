@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+            xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+            elementFormDefault="qualified" 
+            jaxb:version="2.0">
+    <xsd:include schemaLocation="basetypes.xsd"/>
+    
+    <xsd:annotation>
+        <xsd:appinfo>
+<!--            <jaxb:schemaBindings>
+                <jaxb:package name="de.zombielabs.shadowrun.data.character"/>
+            </jaxb:schemaBindings>-->
+            <xsd:documentation xml:lang="en">
+                Schema definition for a Shadowrun character; perks and flaws
+            </xsd:documentation>
+        </xsd:appinfo>
+    </xsd:annotation>
+    
+        
+    <xsd:complexType name="flaws">
+        <xsd:sequence>
+            <xsd:element name="flaw" type="flaw" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="flaw">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="gain" type="xsd:integer" use="required"/>
+        <xsd:attribute name="level" type="xsd:integer" use="optional"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="perks">
+        <xsd:sequence>
+            <xsd:element name="perk" type="perk" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="perk">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="cost" type="xsd:integer" use="required"/>
+        <xsd:attribute name="level" type="xsd:integer" use="optional"/>
+    </xsd:complexType>
+</xsd:schema>

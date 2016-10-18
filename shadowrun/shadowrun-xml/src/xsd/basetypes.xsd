@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+            xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+            elementFormDefault="qualified" 
+            jaxb:version="2.0">
+
+    <xsd:annotation>
+        <xsd:appinfo>
+<!--            <jaxb:schemaBindings>
+                <jaxb:package name="de.zombielabs.shadowrun.data"/>
+            </jaxb:schemaBindings>-->
+            <xsd:documentation xml:lang="en">
+                Schema definition for a Shadowrun character; basetypes.
+            </xsd:documentation>
+        </xsd:appinfo>
+    </xsd:annotation>
+    
+    <xsd:simpleType name="gender" final="restriction" >
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MALE" />
+            <xsd:enumeration value="FEMALE" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="damagetype" final="restriction">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="P"/>
+            <xsd:enumeration value="S"/>
+        </xsd:restriction>
+         
+    </xsd:simpleType>
+
+    <xsd:simpleType name="attributeID" final="restriction" >
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="BOD" />
+            <xsd:enumeration value="DEX" />
+            <xsd:enumeration value="STR" />
+            <xsd:enumeration value="REA" />
+            <xsd:enumeration value="LOG" />
+            <xsd:enumeration value="INT" />
+            <xsd:enumeration value="CHA" />
+            <xsd:enumeration value="WIL" />
+            <xsd:enumeration value="EDG" />
+            <xsd:enumeration value="MAG" />
+            <xsd:enumeration value="RES" />
+            <xsd:enumeration value="ESS" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    
+    
+
+
+
+        <xsd:complexType name="damage">
+        <xsd:sequence>
+            <xsd:element name="value" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="type" type="damagetype" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="extra" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>
+
+    

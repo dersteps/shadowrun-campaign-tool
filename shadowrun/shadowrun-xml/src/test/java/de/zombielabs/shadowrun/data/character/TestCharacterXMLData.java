@@ -75,6 +75,35 @@ public class TestCharacterXMLData {
         skills.getSkill().add(skill1);
         skills.getSkill().add(skill2);
         sheet1.setSkills(skills);
+        
+        final Skillgroup sg1 = new Skillgroup();
+        sg1.setLevel(BigInteger.valueOf(3));
+        sg1.setName("Example skill group");
+        
+        final Skillgroups sgs = new Skillgroups();
+        sgs.getSkillgroup().add(sg1);
+        
+        sheet1.setSkillgroups(sgs);
+        
+        
+        final Perks perks = new Perks();
+        final Flaws flaws = new Flaws();
+        
+        final Perk p1 = new Perk();
+        p1.setCost(BigInteger.valueOf(4));
+        p1.setLevel(BigInteger.ONE);
+        p1.setName("Example perk");
+        
+        final Flaw f1 = new Flaw();
+        f1.setGain(BigInteger.valueOf(12));
+        f1.setLevel(BigInteger.ONE);
+        f1.setName("Example flaw");
+        
+        perks.getPerk().add(p1);
+        flaws.getFlaw().add(f1);
+        
+        sheet1.setFlaws(flaws);
+        sheet1.setPerks(perks);
         c.getDatasheet().add(sheet1);
         
         c.setDataVersion(BigDecimal.valueOf(1.0d));

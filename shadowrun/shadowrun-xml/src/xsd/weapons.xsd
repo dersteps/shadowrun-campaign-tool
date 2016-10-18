@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+            xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+            elementFormDefault="qualified" 
+            jaxb:version="2.0">
+    <xsd:include schemaLocation="basetypes.xsd"/>
+    
+    <xsd:annotation>
+        <xsd:appinfo>
+<!--            <jaxb:schemaBindings>
+                <jaxb:package name="de.zombielabs.shadowrun.data.character"/>
+            </jaxb:schemaBindings>-->
+            <xsd:documentation xml:lang="en">
+                Schema definition for a Shadowrun character; weapons
+            </xsd:documentation>
+        </xsd:appinfo>
+    </xsd:annotation>
+    
+     <xsd:complexType name="weapon-accessory">
+        <xsd:complexContent>
+            <xsd:extension base="item">
+                <xsd:sequence>
+                    <xsd:element name="mount" type="xsd:string" minOccurs="0" maxOccurs="1"/> 
+                </xsd:sequence>
+            </xsd:extension>
+            
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="weapons">
+        <xsd:sequence>
+            <xsd:element name="weapon" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="weapon">
+        <xsd:complexContent>
+            <xsd:extension base="item">
+                <xsd:sequence>
+                    <xsd:element name="type" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="conceal" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="accuracy" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="reach" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="damage" type="damage" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="ap" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="mode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="recoil" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="ammocapacity" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+</xsd:schema>

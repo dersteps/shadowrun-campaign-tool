@@ -4,7 +4,12 @@
             xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
             elementFormDefault="qualified" 
             jaxb:version="2.0">
-
+    <xsd:include schemaLocation="basetypes.xsd"/>
+    <xsd:include schemaLocation="attributes.xsd"/>
+    <xsd:include schemaLocation="skills.xsd"/>
+    <xsd:include schemaLocation="items.xsd"/>
+    <xsd:include schemaLocation="perksflaws.xsd"/>
+    
     <xsd:annotation>
         <xsd:appinfo>
             <jaxb:schemaBindings>
@@ -15,9 +20,6 @@
             </xsd:documentation>
         </xsd:appinfo>
     </xsd:annotation>
-    
-    
-    
     
     <xsd:complexType name="info">
         <xsd:annotation>
@@ -34,70 +36,31 @@
         </xsd:sequence>
     </xsd:complexType>
 
-    <xsd:simpleType name="gender" final="restriction" >
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="MALE" />
-            <xsd:enumeration value="FEMALE" />
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="attributeID" final="restriction" >
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="BOD" />
-            <xsd:enumeration value="DEX" />
-            <xsd:enumeration value="STR" />
-            <xsd:enumeration value="REA" />
-            <xsd:enumeration value="LOG" />
-            <xsd:enumeration value="INT" />
-            <xsd:enumeration value="CHA" />
-            <xsd:enumeration value="WIL" />
-            <xsd:enumeration value="EDG" />
-            <xsd:enumeration value="MAG" />
-            <xsd:enumeration value="RES" />
-            <xsd:enumeration value="ESS" />
-        </xsd:restriction>
-    </xsd:simpleType>
+    
 
     <xsd:complexType name="datasheet">
         <xsd:sequence>
             <xsd:element name="info" type="info" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="attributes" type="attributes" minOccurs="1" maxOccurs="1"/>
             <xsd:element name="skills" type="skills" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="skillgroups" type="skillgroups" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="perks" type="perks" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="flaws" type="flaws" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="gear" type="gear" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="version" type="xsd:integer" use="required"/>
     </xsd:complexType>
-
-    <xsd:complexType name="attributes">
+    
+    
+    <xsd:complexType name="gear">
         <xsd:sequence>
-            <xsd:element name="attribute" type="attribute" minOccurs="12" maxOccurs="12"/>
+            <xsd:element name="armors" type="armors" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="weapons" type="weapons" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
     
-    <xsd:complexType name="skills">
-        <xsd:sequence>
-            <xsd:element name="skill" type="skill" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    
-    <xsd:complexType name="skill-specialization">
-        <xsd:attribute name="value" type="xsd:integer" use="required"/>
-        <xsd:attribute name="name" type="xsd:string" use="required"/>
-    </xsd:complexType>
-    
-    <xsd:complexType name="skill">
-        <xsd:sequence>
-            <xsd:element name="specialization" type="skill-specialization" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-        <xsd:attribute name="name" type="xsd:string" use="required"/>
-        <xsd:attribute name="level" type="xsd:integer" use="required"/>
-    </xsd:complexType>
 
-    <xsd:complexType name="attribute">
-        <xsd:attribute name="id" type="attributeID" use="required"/>
-        <xsd:attribute name="natural" type="xsd:decimal" use="required"/>
-        <xsd:attribute name="augmented" type="xsd:decimal" use="required"/>
-    </xsd:complexType>
-
+   
     <xsd:complexType name="character">
         <xsd:annotation>
             <xsd:appinfo>

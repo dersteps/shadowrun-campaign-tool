@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+            xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+            elementFormDefault="qualified" 
+            jaxb:version="2.0">
+    <xsd:include schemaLocation="basetypes.xsd"/>
+    
+    <xsd:annotation>
+        <xsd:appinfo>
+<!--            <jaxb:schemaBindings>
+                <jaxb:package name="de.zombielabs.shadowrun.data.character"/>
+            </jaxb:schemaBindings>-->
+            <xsd:documentation xml:lang="en">
+                Schema definition for a Shadowrun character; attributes.
+            </xsd:documentation>
+        </xsd:appinfo>
+    </xsd:annotation>
+    
+     <xsd:complexType name="attribute">
+        <xsd:attribute name="id" type="attributeID" use="required"/>
+        <xsd:attribute name="natural" type="xsd:decimal" use="required"/>
+        <xsd:attribute name="augmented" type="xsd:decimal" use="required"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="attributes">
+        <xsd:sequence>
+            <xsd:element name="attribute" type="attribute" minOccurs="12" maxOccurs="12"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+</xsd:schema>
