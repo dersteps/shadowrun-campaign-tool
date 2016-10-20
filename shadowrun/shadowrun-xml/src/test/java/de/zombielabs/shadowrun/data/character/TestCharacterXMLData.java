@@ -104,6 +104,49 @@ public class TestCharacterXMLData {
         
         sheet1.setFlaws(flaws);
         sheet1.setPerks(perks);
+        
+        final Gear gear = new Gear();
+        
+        final Armors armors = new Armors();
+        final Armor armor1 = new Armor();
+        armor1.setArmor(BigInteger.valueOf(3));
+        armor1.setCapacity(BigInteger.valueOf(2));
+        armor1.setAvailability("Test-Avail");
+        armor1.setId("ARMOR_TEST_00001");
+        armor1.setName("Example armor");
+        
+        armors.getArmor().add(armor1);
+        gear.setArmors(armors);
+        
+        final Weapons weapons = new Weapons();
+        final Weapon w1 = new Weapon();
+        w1.setAccuracy(BigInteger.valueOf(4));
+        w1.setAmmocapacity(BigInteger.valueOf(12));
+        w1.setAp(BigInteger.ONE);
+        w1.setAvailability("3D");
+        w1.setConceal(BigInteger.valueOf(9));
+        final Damage dmg1 = new Damage();
+        dmg1.setValue(BigInteger.valueOf(10));
+        dmg1.setType(Damagetype.P);
+        dmg1.setExtra("Target is burning or whatever");
+        
+        w1.setDamage(dmg1);
+        
+        w1.setId("WEAPON_TEST_00001");
+        w1.setMode("HM");
+        w1.setName("Example weapon");
+        w1.setReach(BigInteger.ZERO);
+        w1.setRecoil(BigInteger.valueOf(2));
+        w1.setType("Example weapon type");
+        weapons.getWeapon().add(w1);
+        
+        
+        
+        gear.setWeapons(weapons);
+        
+        sheet1.setGear(gear);
+        
+        
         c.getDatasheet().add(sheet1);
         
         c.setDataVersion(BigDecimal.valueOf(1.0d));
